@@ -21,9 +21,9 @@ class UsersList
         echo "<span class='mobile'>Mobile No.</span>";
         echo "<span class='gender'>Gender</span>";
         echo "<span class='city'>City</span>";
+        echo "<span class='update'>Update User</span>";
 
         if(self::$loggedInUserIsAdmin) {
-            echo "<span class='update'>Update User</span>";
             echo "<span class='delete'>Delete User</span>";
         }
         echo "</li>";
@@ -38,6 +38,10 @@ class UsersList
             if(self::$loggedInUserIsAdmin) {
                 echo "<span class='update'><a href='" . constant('URL') . "/users.php?update=" . $row['email'] . "' title='Update'>Update</a></span>";
                 echo "<span class='delete'><a href='" . constant('URL') . "/users.php?email=" . $row['email'] . "' title='Delete'>Delete</a></span>";
+            } elseif($_COOKIE[EMAIL] == $row["email"]) {
+                echo "<span class='update'><a href='" . constant('URL') . "/users.php?update=" . $row['email'] . "' title='Update'>Update</a></span>";
+            } elseif($_COOKIE[EMAIL] != $row["email"]) {
+                echo "<span class='update'></span>";
             }
             echo "</li>";
         }
@@ -66,10 +70,20 @@ class UsersList
 
     public static function updateUserInDB() 
     {
-        $email = $_GET["update"];
+        $email = $_COOKIE[EMAIL];
+        $update = $_GET["update"];
 
-        setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
-        header('Location: ' . URL);
+        if(!self::$loggedInUserIsAdmin) {
+            if($email == $update) {
+                setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
+                header('Location: ' . URL);
+            }
+        }
+        else {
+            setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
+            header('Location: ' . URL);
+        }
+
     }
 
     public static function checkIfUserIsAnAdmin($email) {

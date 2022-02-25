@@ -1,7 +1,7 @@
 .wrapper {
     max-width: 1000px;
     width: 96%;
-    margin: 50px auto;
+    margin: 0 auto 30px;
 }
 
 .wrapper > p { margin-bottom: 20px; }
