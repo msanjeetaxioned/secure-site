@@ -99,10 +99,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit">submit</button>
             </div>
         </form>
+        <?php
+        if(isset($_COOKIE[UPDATE])) {
+        ?>
         <div class="login-div">
-            <h2>Registered Already? Login</h2>
+            <h2>Users Page</h2>
+            <a href="<?php echo constant('URL').'/users.php'?>" title="Users">Users</a>
+        </div>
+        <?php } else { ?>
+        <div class="login-div">
+            <h2>Login Page</h2>
             <a href="<?php echo constant('URL').'/login.php'?>" title="Login">Login</a>
         </div>
+        <?php } ?>
         <?php
         // After Successful form submit show message and submitted data to User.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

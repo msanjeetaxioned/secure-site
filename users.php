@@ -3,6 +3,9 @@ require('utility/base-url.php');
 if(!isset($_COOKIE[EMAIL])) {
     header('Location: ' . URL . '/login.php');
 }
+if(isset($_COOKIE[UPDATE])) {
+    setcookie(UPDATE, "", time() - 300, "/", "", 0);
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     setcookie(EMAIL, "", time() - 300, "/", "", 0);
     header('Location: ' . URL . '/login.php');
