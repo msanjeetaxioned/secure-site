@@ -17,12 +17,12 @@ class Login
         Validation::loginEmailAndPasswordValidation(self::$loginEmail, self::$loginPassword);
         if(Validation::$loginError == "") {
             if(self::$rememberMe) {
-                setcookie("email", self::$loginEmail, time() + 365 * 24 * 60 * 60, "/", "", 0);
+                setcookie(EMAIL, self::$loginEmail, time() + 365 * 24 * 60 * 60, "/", "", 0);
             }
             else {
-                setcookie("email", self::$loginEmail, 0, "/", "", 0);
+                setcookie(EMAIL, self::$loginEmail, 0, "/", "", 0);
             }
-            header('Location: http://localhost/php/form-oops/users.php');
+            header('Location: ' . URL .'/users.php');
         }
     }
 }

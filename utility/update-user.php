@@ -1,11 +1,15 @@
 <?php
 
 $fields;
-if(isset($_COOKIE["update"])) {
-    $email = $_COOKIE["update"];
-    DatabaseConnection::startConnection();
-    $select = mysqli_query(DatabaseConnection::$conn, "select * from users where email = '$email'");
+if(isset($_COOKIE[UPDATE)) {
+    $email = $_COOKIE[UPDATE];
 
-    $fields = mysqli_fetch_assoc($select);
+    DatabaseConnection::startConnection();
+    $stmt = DatabaseConnection::$conn->prepare("SELECT name, email, mobile, gender, city FROM users where email=?;");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $fields = $result->fetch_assoc()
+    $stmt->close();
     DatabaseConnection::closeDBConnection();
 }
