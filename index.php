@@ -70,11 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class='city-select'>
                     <label for='city'>City:</label>
                     <select name="city" id='city'>
-                        <option value="Mumbai">Mumbai</option>
-                        <option value="Pune">Pune</option>
-                        <option value="Delhi">Delhi</option>
-                        <option value="Bangalore">Bangalore</option>
-                        <option value="Kolkata">Kolkata</option>
+                        <option <?php if (isset($_POST['city'])) { if($_POST['city'] == 'Mumbai') { ?>selected="true" <?php }}; ?>value="Mumbai">Mumbai</option>
+                        <option <?php if (isset($_POST['city'])) { if($_POST['city'] == 'Pune') { ?>selected="true" <?php }}; ?>value="Pune">Pune</option>
+                        <option <?php if (isset($_POST['city'])) { if($_POST['city'] == 'Delhi') { ?>selected="true" <?php }}; ?>value="Delhi">Delhi</option>
+                        <option <?php if (isset($_POST['city'])) { if($_POST['city'] == 'Bangalore') { ?>selected="true" <?php }}; ?>value="Bangalore">Bangalore</option>
+                        <option <?php if (isset($_POST['city'])) { if($_POST['city'] == 'Kolkata') { ?>selected="true" <?php }}; ?>value="Kolkata">Kolkata</option>
                     </select>
                 </div>
             </div>
