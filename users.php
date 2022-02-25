@@ -4,7 +4,7 @@ if(!isset($_COOKIE[EMAIL])) {
     header('Location: ' . URL . '/login.php');
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    setcookie("email", "", time() - 300, "/", "", 0);
+    setcookie(EMAIL, "", time() - 300, "/", "", 0);
     header('Location: ' . URL . '/login.php');
 }
 require('utility/db-connection.php');
@@ -48,7 +48,11 @@ if(isset($_GET['update'])) {
                     ?>
                 </ul>
         <?php   }
-        echo "<div class='error-message'><span>" . UsersList::$errorMessage . "</span></div>";
+        if(isset($_GET["email"])) {
+            if(UsersList::$errorMessage != "") {
+                echo "<div class='error-message'><span>" . UsersList::$errorMessage . "</span></div>";
+            }
+        }
         ?>
         <form method="post" class="submit-div" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <button type="submit">Logout</button>

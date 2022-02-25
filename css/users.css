@@ -1,5 +1,5 @@
 .wrapper {
-    max-width: 950px;
+    max-width: 1000px;
     width: 96%;
     margin: 50px auto;
 }
@@ -35,4 +35,14 @@ h2 {
 
 .users-list > li > span:last-child { border-right: none; }
 .users-list > li:first-child > span { font-weight: bold; }
-.users-list > li > .email { flex: auto; }
+.users-list > li > .email { flex-basis: 20%; }
+
+.update > a, .delete > a {
+    text-decoration: underline;
+    transition: color 1s ease-in-out; 
+}
+
+.update > a:hover { color: #04AA6D; }
+.delete > a:hover { color: #f00; }
+.error-message { margin-bottom: 20px; }
+.error-message > span { color: #f00; }

@@ -1,7 +1,7 @@
 <?php
 
 $fields;
-if(isset($_COOKIE[UPDATE)) {
+if(isset($_COOKIE[UPDATE])) {
     $email = $_COOKIE[UPDATE];
 
     DatabaseConnection::startConnection();
@@ -9,7 +9,7 @@ if(isset($_COOKIE[UPDATE)) {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
-    $fields = $result->fetch_assoc()
+    $fields = $result->fetch_assoc();
     $stmt->close();
     DatabaseConnection::closeDBConnection();
 }

@@ -47,20 +47,19 @@ class UsersList
     public static function deleteUserFromDB() 
     {
         $email = $_GET["email"];
-        DatabaseConnection::startConnection();
-        // $delete = mysqli_query(DatabaseConnection::$conn, "delete from users where email = '$email'");
 
         if(!self::checkIfUserIsAnAdmin($email)) {
-            $stmt = DatabaseConnection::$conn->prepare("delete from users where email = ?");
+            DatabaseConnection::startConnection();
+            $stmt = DatabaseConnection::$conn->prepare("DELETE FROM users WHERE email=?;");
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->close();
             DatabaseConnection::closeDBConnection();
         }
         else {
-            $errorMessage = ErrorMessages::$deleteUserError;
+            self::$errorMessage = ErrorMessages::$deleteUserError;
             if($email == $_COOKIE[EMAIL]) {
-                $errorMessage = ErrorMessages::$adminDeletesSelfError;
+                self::$errorMessage = ErrorMessages::$adminDeletesSelfError;
             }
         }
     }
@@ -79,13 +78,13 @@ class UsersList
         $stmt = DatabaseConnection::$conn->prepare("SELECT admin FROM users where email=?;");
         $stmt->bind_param("s", $email);
         $stmt->execute();
-        $stmt->store_result();
-        $rows = $stmt->num_rows;
+        $result = $stmt->get_result();
+        $fields = $result->fetch_assoc();
 
         $stmt->close();
         DatabaseConnection::closeDBConnection();
 
-        if($rows >= 1) {
+        if($fields['admin'] == 'Yes') {
             return true;
         }
         return false;
