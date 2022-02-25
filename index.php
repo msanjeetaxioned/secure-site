@@ -38,7 +38,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="wrapper">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
             <h2><?php echo isset($_COOKIE[UPDATE]) ? "Update User" : "Register User"; ?></h2>
-            <p class="note">Note: All of the below fields are Required.</p>
+            <p class="note">Note:</p>
+            <ul class=notes>
+                <li><span>All of the below fields are Required.</span></li>
+                <?php
+                if(isset($_COOKIE[UPDATE])) {
+                ?>
+                <li><span>Email cannot be Updated.</span></li>
+                <?php
+                }
+                ?>
+            </ul>
             <div class="name-div percent-50">
                 <input type="text" name="name" placeholder="Name" value="<?php echo isset($_COOKIE[UPDATE]) ? $fields['name'] : (isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES) : '') ?>">
                 <span class="error-message"><?php echo Validation::$nameError; ?></span>

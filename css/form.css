@@ -5,11 +5,18 @@
 }
 
 p.note {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     font-size: 18px;
     word-spacing: 2px;
 }
 
+.notes {
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+.notes > li { margin-bottom: 5px; }
+.notes > li:last-child { margin-bottom: 0; }
 form { margin-bottom: 25px; }
 
 .percent-50 { 
