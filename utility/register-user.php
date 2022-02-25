@@ -77,8 +77,9 @@ class RegisterUser
             } else {
                 // $sql = "INSERT INTO users VALUES ('$this->name', '$this->email', '$this->mobileNum', '$this->gender', '$this->password', '$filename')";
 
-                $stmt = DatabaseConnection::$conn->prepare("INSERT INTO users (name, email, mobile, gender, password, file, city) VALUES (?, ?, ?, ?, ?, ?, ?);");
-                $stmt->bind_param("ssissss", $this->name, $this->email, $this->mobileNum, $this->gender, $this->password, $filename, $this->city);
+                $stmt = DatabaseConnection::$conn->prepare("INSERT INTO users (name, email, mobile, gender, password, file, city, admin) VALUES (?, ?, ?, ?, ?, ?, ?, ?);");
+                $admin = "No";
+                $stmt->bind_param("ssisssss", $this->name, $this->email, $this->mobileNum, $this->gender, $this->password, $filename, $this->city, $admin);
             }
 
             $submittedData = ["name" => $this->name, "mobile" => $this->mobileNum, "gender" => $this->gender, "file" => $filename, "city" => $this->city];
