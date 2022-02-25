@@ -64,8 +64,8 @@ if(!isset($_COOKIE[SUBMIT])) {
     if(isset($_COOKIE[UPDATE])) {
         // Delete 'Update' Cookie after successfull Update of DB
         setcookie(UPDATE, "", time() - 300, "/", "", 0);
-        setcookie(SUBMIT, "", time() - 300, "/", "", 0);
     }
+    setcookie(SUBMIT, "", time() - 300, "/", "", 0);
     ?>
 </body>
 </html>
