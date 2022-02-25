@@ -4,7 +4,7 @@ class Validation
 {
     public static $nameError = "";
     public static $emailError = "";
-    public static $mobileNumError = "";
+    public static $mobileNumError = "Note: Do not type +91. Only type your 10 digit Mobile Number.";
     public static $genderError = "";
     public static $passwordError = "Hint: Password must have minimum 8 characters. It must contain 1 Uppercase Character, 1 Number & 1 Special Character.";
     public static $confirmPassError = "";
@@ -69,11 +69,10 @@ class Validation
         if (empty($mobileNum)) {
             self::$mobileNumError = ErrorMessages::$emptyErrors["mobile-num"];
         } else {
-            $pattern = "/^(\+91[\-\s]?)?[0]?(91)?[789]\d{9}$/";
+            $pattern = "/^[7-9][0-9]{9}$/";
             if (preg_match($pattern, $mobileNum)) {
                 self::$mobileNumError = "";
-            }
-            else {
+            } else {
                 self::$mobileNumError = ErrorMessages::$criteriaErrors["mobile-num"];
             }
         }
@@ -96,8 +95,7 @@ class Validation
             $pattern = "/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/";
             if (preg_match($pattern, $password)) {
                 self::$passwordError = "";
-            }
-            else {
+            } else {
                 self::$passwordError = ErrorMessages::$criteriaErrors["password"];
             }
         }
@@ -110,8 +108,7 @@ class Validation
         } else {
             if ($confirmPass == $password) {
                 self::$confirmPassError = "";
-            }
-            else {
+            } else {
                 self::$confirmPassError = ErrorMessages::$criteriaErrors["confirm-pass"];
             }
         }

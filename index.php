@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="mobile-div percent-50">
                 <input type="tel" name="phone-num" placeholder="Mobile Number" value="<?php echo isset($_COOKIE[UPDATE]) ? $fields['mobile'] : (isset($_POST['phone-num']) ? htmlspecialchars($_POST['phone-num'], ENT_QUOTES) : '') ?>">
-                <span class="error-message"><?php echo Validation::$mobileNumError; ?></span>
+                <span class="<?php echo isset($_POST['phone-num']) ? 'error-message' : 'error-message hint';?>"><?php echo Validation::$mobileNumError; ?></span>
             </div>
             <div class="gender-div percent-50">
                 <div class="gender-radio">
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="male">Male</label>
                     <input type="radio" id="male" name="gender" value="Male" <?php echo isset($_COOKIE[UPDATE]) ? (($fields['gender'] === 'Male') ? 'checked' : '') : ((isset($_POST['gender'])) ? (($_POST['gender'] === 'Male') ? 'checked' : '') : '') ?>>
                     <label for="female">Female</label>
-                    <input type="radio" id="female" name="gender" value="Female" <?php echo isset($_COOKIE["update"]) ? (($fields['gender'] === 'Female') ? 'checked' : '') : ((isset($_POST['gender']) && $_POST['gender'] === 'Female') ? 'checked' : '') ?>>
+                    <input type="radio" id="female" name="gender" value="Female" <?php echo isset($_COOKIE[UPDATE]) ? (($fields['gender'] === 'Female') ? 'checked' : '') : ((isset($_POST['gender']) && $_POST['gender'] === 'Female') ? 'checked' : '') ?>>
                 </div>
                 <span class="error-message"><?php echo Validation::$genderError; ?></span>
             </div>
