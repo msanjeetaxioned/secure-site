@@ -42,14 +42,14 @@ class Validation
     public static function checkIfEmailAlreadyUsedInDB($email) 
     {
         DatabaseConnection::startConnection();
-        if(isset($_COOKIE["update"])) {
-            $updateEmail = $_COOKIE["update"];
+        if(isset($_COOKIE[UPDATE])) {
+            $updateEmail = $_COOKIE[UPDATE];
             // $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email' AND email <> '$updateEmail'");
-            $stmt = DatabaseConnection::$conn->prepare("SELECT * FROM users WHERE email = ? AND email <> ?");
+            $stmt = DatabaseConnection::$conn->prepare("SELECT * FROM users WHERE email = ? AND email <> ?;");
             $stmt->bind_param("ss", $email, $updateEmail);
         } else { 
             // $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email'");
-            $stmt = DatabaseConnection::$conn->prepare("SELECT * FROM users WHERE email = ?");
+            $stmt = DatabaseConnection::$conn->prepare("SELECT * FROM users WHERE email = ?;");
             $stmt->bind_param("s", $email);
         }
 

@@ -28,7 +28,16 @@ if(!isset($_COOKIE[SUBMIT])) {
     </header>
     <div class='wrapper'>
         <div class="submitted-data">
+            <?php
+            if(isset($_COOKIE[UPDATE])) {
+            ?>
+            <h2>User '<?php echo $_COOKIE[UPDATE]; ?>' Updated!</h2>
+            <?php
+            } else {
+            ?>
             <h2>User Registered Successfully!</h2>
+            <?php 
+            } ?>
             <h3>Submitted Data:</h3>
             <p><small>Name: </small><?php echo $name; ?></p>
             <p><small>Mobile Number: </small><?php echo $mobile; ?></p>

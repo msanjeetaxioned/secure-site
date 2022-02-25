@@ -26,6 +26,13 @@ if(isset($_GET['update'])) {
     <link rel="stylesheet" href="css/users.css">
 </head>
 <body>
+    <header>
+        <div class="wrapper">
+            <h1>
+                <a href="#" title="Secure Site">Secure Site</a>
+            </h1>
+        </div>
+    </header>
     <div class="wrapper">
         <h1>Welcome!</h1>
         <p>User: <?php echo $_COOKIE[EMAIL] ?></p>

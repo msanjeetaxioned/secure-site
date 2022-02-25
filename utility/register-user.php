@@ -68,8 +68,8 @@ class RegisterUser
             $filename = $this->file["name"];
             DatabaseConnection::startConnection();
             
-            if(isset($_COOKIE["update"])) {
-                $updateEmail = $_COOKIE["update"];
+            if(isset($_COOKIE[UPDATE])) {
+                $updateEmail = $_COOKIE[UPDATE];
                 // $sql = "UPDATE users SET name='$this->name', mobile='$this->mobileNum', gender='$this->gender', password='$this->password', file='$filename' where email = '$updateEmail'";
 
                 $stmt = DatabaseConnection::$conn->prepare("UPDATE users SET name=?, mobile=?, gender=?, password=?, file=?, city=? where email=?");
