@@ -1,0 +1,38 @@
+.wrapper {
+    max-width: 950px;
+    width: 96%;
+    margin: 50px auto;
+}
+
+.wrapper > p { margin-bottom: 20px; }
+
+h2 {
+    margin-bottom: 25px;
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.users-list {
+    border: 2px solid #000;
+    margin-bottom: 25px; 
+}
+
+.users-list > li {
+    border-bottom: 2px solid #000;
+    display: flex;
+}
+
+.users-list > li:last-child { border-bottom: none; }
+
+.users-list > li > span {
+    padding: 5px 0;
+    border-right: 2px solid #000;
+    display: inline-block;
+    flex-basis: 15%;
+    text-align: center;
+}
+
+.users-list > li > span:last-child { border-right: none; }
+.users-list > li:first-child > span { font-weight: bold; }
+.users-list > li > .email { flex-basis: 25%; }
