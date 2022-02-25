@@ -4,10 +4,11 @@ class UsersList
 {
     public static $numOfUsers;
     public static $loggedInUserIsAdmin;
+    public static $errorMessage = "";
 
     public static function createUserList() 
     {
-        self::$loggedInUserIsAdmin = self::checkIfLoggedInUserIsAnAdmin();
+        self::$loggedInUserIsAdmin = self::checkIfUserIsAnAdmin($_COOKIE[EMAIL]);
 
         DatabaseConnection::startConnection();
         $select = mysqli_query(DatabaseConnection::$conn, "SELECT name, email, mobile, gender, city, admin FROM users;");
@@ -49,15 +50,18 @@ class UsersList
         DatabaseConnection::startConnection();
         // $delete = mysqli_query(DatabaseConnection::$conn, "delete from users where email = '$email'");
 
-        $stmt = DatabaseConnection::$conn->prepare("delete from users where email = ?");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $stmt->close();
-        DatabaseConnection::closeDBConnection();
-        
-        if($email == $_COOKIE[EMAIL]) {
-            setcookie(EMAIL, "", time() - 300, "/", "", 0);
-            header('Location: ' . URL . '/login.php');
+        if(!self::checkIfUserIsAnAdmin($email)) {
+            $stmt = DatabaseConnection::$conn->prepare("delete from users where email = ?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $stmt->close();
+            DatabaseConnection::closeDBConnection();
+        }
+        else {
+            $errorMessage = ErrorMessages::$deleteUserError;
+            if($email == $_COOKIE[EMAIL]) {
+                $errorMessage = ErrorMessages::$adminDeletesSelfError;
+            }
         }
     }
 
@@ -69,8 +73,7 @@ class UsersList
         header('Location: ' . URL);
     }
 
-    public static function checkIfLoggedInUserIsAnAdmin() {
-        $email = $_COOKIE[EMAIL];
+    public static function checkIfUserIsAnAdmin($email) {
         DatabaseConnection::startConnection();
 
         $stmt = DatabaseConnection::$conn->prepare("SELECT admin FROM users where email=?;");

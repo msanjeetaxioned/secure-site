@@ -11,4 +11,8 @@ class ErrorMessages
     public static $fromDatabaseErrors = ["email" => "*Email Address is already in use. Please use another."];
 
     public static $loginErrorMessage = "*Invalid Email ID and/or Password";
+
+    public static $deleteUserError = "*Insufficient Privilege. Contact DB Administrators!";
+
+    public static $adminDeletesSelfError = "*Not Allowed. Contact DB Administrator.";
 }

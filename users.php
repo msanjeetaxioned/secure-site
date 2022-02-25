@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header('Location: ' . URL . '/login.php');
 }
 require('utility/db-connection.php');
+require('utility/errors.php');
 require("utility/users-list.php");
 if(isset($_GET['update'])) {
     UsersList::updateUserInDB();
@@ -47,6 +48,7 @@ if(isset($_GET['update'])) {
                     ?>
                 </ul>
         <?php   }
+        echo "<div class='error-message'><span>" . UsersList::$errorMessage . "</span></div>";
         ?>
         <form method="post" class="submit-div" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <button type="submit">Logout</button>
