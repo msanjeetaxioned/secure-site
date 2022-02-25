@@ -46,10 +46,26 @@ if(!isset($_COOKIE[SUBMIT])) {
             <p><small>Uploaded Image:</small></p>
             <figure><img src='profile-pic/<?php echo $filename; ?>' alt='Your Profile Picture'></figure>
         </div>
+        <?php
+        if(isset($_COOKIE[UPDATE])) {
+        ?>
+        <div class="login-div">
+            <h2>Users Page</h2>
+            <a href="<?php echo constant('URL').'/users.php'?>" title="Users">Users</a>
+        </div>
+        <?php } else { ?>
         <div class="login-div">
             <h2>Login Page</h2>
             <a href="<?php echo constant('URL').'/login.php'?>" title="Login">Login</a>
         </div>
+        <?php } ?>
     </div>
+    <?php
+    if(isset($_COOKIE[UPDATE])) {
+        // Delete 'Update' Cookie after successfull Update of DB
+        setcookie(UPDATE, "", time() - 300, "/", "", 0);
+        setcookie(SUBMIT, "", time() - 300, "/", "", 0);
+    }
+    ?>
 </body>
 </html>

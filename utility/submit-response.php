@@ -7,9 +7,3 @@ if(isset($_COOKIE[SUBMIT])) {
     $filename = $submittedData['file'];
     $city = $submittedData['city'];
 }
-
-if(isset($_COOKIE[UPDATE])) {
-    // Delete 'Update' Cookie after successfull Update of DB
-    setcookie(UPDATE, "", time() - 300, "/", "", 0);
-    setcookie(SUBMIT, "", time() - 300, "/", "", 0);
-}
