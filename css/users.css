@@ -29,10 +29,10 @@ h2 {
     padding: 5px 0;
     border-right: 2px solid #000;
     display: inline-block;
-    flex-basis: 15%;
+    flex: 1;
     text-align: center;
 }
 
 .users-list > li > span:last-child { border-right: none; }
 .users-list > li:first-child > span { font-weight: bold; }
-.users-list > li > .email { flex-basis: 25%; }
+.users-list > li > .email { flex: auto; }
