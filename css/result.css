@@ -1,0 +1,13 @@
+.wrapper {
+    max-width: 1000px;
+    width: 60%;
+    margin: 0 auto 30px;
+}
+
+.wrapper > h2 {
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.score { margin-bottom: 30px; }

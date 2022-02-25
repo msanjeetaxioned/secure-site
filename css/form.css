@@ -1,0 +1,31 @@
+.wrapper {
+    max-width: 900px;
+    width: 55%;
+    margin: 30px auto;
+}
+
+p.note {
+    margin-bottom: 20px;
+    font-size: 18px;
+    word-spacing: 2px;
+}
+
+form { margin-bottom: 25px; }
+
+.percent-50 { 
+    display: flex;
+    align-items: center;
+}
+
+.percent-50 > * { flex-basis: 50%; }
+input[type="radio"]:hover, label, input[type="file"]:hover { cursor: pointer; }
+input[type="file"] { padding: unset; }
+
+.gender-div > h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.city-select > * { display: block; }
+.city-select > label { margin-bottom: 5px; }
+.city-select > select { padding: 5px; }
