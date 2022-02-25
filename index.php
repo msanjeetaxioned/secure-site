@@ -28,6 +28,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user->validateFields();
 }
 ?>
+    <header>
+        <div class="wrapper">
+            <h1>
+                <a href="#" title="Secure Site">Secure Site</a>
+            </h1>
+        </div>
+    </header>
     <div class="wrapper">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
             <h2><?php echo isset($_COOKIE[UPDATE]) ? "Update User" : "Register User"; ?></h2>

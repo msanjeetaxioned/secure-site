@@ -22,7 +22,7 @@ if(!isset($_COOKIE[SUBMIT])) {
     <header>
         <div class="wrapper">
             <h1>
-                <a href="#" title="Online Quiz">Online Quiz</a>
+                <a href="#" title="Secure Site">Secure Site</a>
             </h1>
         </div>
     </header>

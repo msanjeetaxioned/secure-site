@@ -1,7 +1,7 @@
 .wrapper {
     max-width: 900px;
     width: 55%;
-    margin: 0 auto;
+    margin: 0 auto 30px;
 }
 
 .submitted-data { margin-bottom: 25px; }

@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
-    <header>
+<header>
         <div class="wrapper">
             <h1>
-                <a href="#" title="Online Quiz">Online Quiz</a>
+                <a href="#" title="Secure Site">Secure Site</a>
             </h1>
         </div>
     </header>

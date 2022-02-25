@@ -1,7 +1,7 @@
 .wrapper {
     max-width: 900px;
     width: 55%;
-    margin: 30px auto;
+    margin: 0 auto 30px;
 }
 
 p.note {
