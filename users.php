@@ -6,6 +6,10 @@ if(!isset($_COOKIE[EMAIL])) {
 if(isset($_COOKIE[UPDATE])) {
     setcookie(UPDATE, "", time() - 300, "/", "", 0);
 }
+if(isset($_GET["logout"])) {
+    setcookie(EMAIL, "", time() - 300, "/", "", 0);
+    header('Location: ' . URL . '/login.php');
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     setcookie(EMAIL, "", time() - 300, "/", "", 0);
     header('Location: ' . URL . '/login.php');
@@ -24,6 +28,7 @@ if(isset($_GET['update'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users Page</title>
+    <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/override.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/users.css">
@@ -34,11 +39,13 @@ if(isset($_GET['update'])) {
             <h1>
                 <a href="#" title="Secure Site">Secure Site</a>
             </h1>
+            <div class="control-buttons">
+                <span class="user-email"><?php echo isset($_COOKIE[EMAIL]) ? "Welcome! " . $_COOKIE[EMAIL] : ""; ?></span>
+                <a href='<?php echo constant('URL').'/users.php?logout=true'?>' title="Logout">Logout</a>
+            </div>
         </div>
     </header>
     <div class="wrapper">
-        <h1>Welcome!</h1>
-        <p>User: <?php echo $_COOKIE[EMAIL] ?></p>
         <h2>All Users:</h2>
         <?php
             if(!isset($_GET["email"])) {
