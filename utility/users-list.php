@@ -61,13 +61,14 @@ class UsersList
                 $stmt->execute();
                 $stmt->close();
                 DatabaseConnection::closeDBConnection();
-            }
-            else {
+            } else {
                 self::$errorMessage = ErrorMessages::$deleteUserError;
                 if($email == $_COOKIE[EMAIL]) {
                     self::$errorMessage = ErrorMessages::$adminDeletesSelfError;
                 }
             }
+        } else {
+            self::$errorMessage = ErrorMessages::$deleteUserError;
         }
     }
 
@@ -81,8 +82,7 @@ class UsersList
                 setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
                 header('Location: ' . URL);
             }
-        }
-        else {
+        } else {
             setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
             header('Location: ' . URL);
         }
