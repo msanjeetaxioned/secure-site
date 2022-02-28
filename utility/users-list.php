@@ -26,6 +26,8 @@ class UsersList
         }
         echo "</li>";
 
+        $email = $_COOKIE[EMAIL];
+
         while($row = mysqli_fetch_assoc($select)) {
             echo "<li>";
             echo "<span class='name'>" . $row["name"] . "</span>";
@@ -36,9 +38,9 @@ class UsersList
             if(self::$loggedInUserIsAdmin) {
                 echo "<span class='update'><a href='" . constant('URL') . "/users.php?update=" . $row['email'] . "' title='Update'>Update</a></span>";
                 echo "<span class='delete'><a href='" . constant('URL') . "/users.php?email=" . $row['email'] . "' title='Delete'>Delete</a></span>";
-            } elseif($_COOKIE[EMAIL] == $row["email"]) {
+            } elseif($email == $row["email"]) {
                 echo "<span class='update'><a href='" . constant('URL') . "/users.php?update=" . $row['email'] . "' title='Update'>Update</a></span>";
-            } elseif($_COOKIE[EMAIL] != $row["email"]) {
+            } elseif($email != $row["email"]) {
                 echo "<span class='update'></span>";
             }
             echo "</li>";
