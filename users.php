@@ -46,6 +46,10 @@ if(isset($_GET['update'])) {
         </div>
     </header>
     <div class="wrapper">
+        <?php
+        UsersList::$loggedInUserIsAdmin = UsersList::checkIfUserIsAnAdmin($_COOKIE[EMAIL]);
+        echo UsersList::$loggedInUserIsAdmin ? "<p>Welcome Admin!</p>" : "";
+        ?>
         <h2>All Users:</h2>
         <?php
             if(!isset($_GET["email"])) {

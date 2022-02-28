@@ -8,20 +8,18 @@ class UsersList
 
     public static function createUserList() 
     {
-        self::$loggedInUserIsAdmin = self::checkIfUserIsAnAdmin($_COOKIE[EMAIL]);
-
         DatabaseConnection::startConnection();
         $select = mysqli_query(DatabaseConnection::$conn, "SELECT name, email, mobile, gender, city, admin FROM users;");
 
         self::$numOfUsers = mysqli_num_rows($select);
 
-        echo "<li>";
-        echo "<span class='name'>Name</span>";
-        echo "<span class='email'>Email Id</span>";
-        echo "<span class='mobile'>Mobile No.</span>";
-        echo "<span class='gender'>Gender</span>";
-        echo "<span class='city'>City</span>";
-        echo "<span class='update'>Update User</span>";
+        echo "<li>
+                <span class='name'>Name</span>
+                <span class='email'>Email Id</span>
+                <span class='mobile'>Mobile No.</span>
+                <span class='gender'>Gender</span>
+                <span class='city'>City</span>
+                <span class='update'>Update User</span>";
 
         if(self::$loggedInUserIsAdmin) {
             echo "<span class='delete'>Delete User</span>";
