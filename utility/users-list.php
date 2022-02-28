@@ -52,18 +52,21 @@ class UsersList
     {
         $email = $_GET["email"];
 
-        if(!self::checkIfUserIsAnAdmin($email)) {
-            DatabaseConnection::startConnection();
-            $stmt = DatabaseConnection::$conn->prepare("DELETE FROM users WHERE email=?;");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $stmt->close();
-            DatabaseConnection::closeDBConnection();
-        }
-        else {
-            self::$errorMessage = ErrorMessages::$deleteUserError;
-            if($email == $_COOKIE[EMAIL]) {
-                self::$errorMessage = ErrorMessages::$adminDeletesSelfError;
+        // Checks if Logged in User is an Admin for allowing 'Delete' functionality
+        if(self::$loggedInUserIsAdmin) {
+            if(!self::checkIfUserIsAnAdmin($email)) {
+                DatabaseConnection::startConnection();
+                $stmt = DatabaseConnection::$conn->prepare("DELETE FROM users WHERE email=?;");
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $stmt->close();
+                DatabaseConnection::closeDBConnection();
+            }
+            else {
+                self::$errorMessage = ErrorMessages::$deleteUserError;
+                if($email == $_COOKIE[EMAIL]) {
+                    self::$errorMessage = ErrorMessages::$adminDeletesSelfError;
+                }
             }
         }
     }
