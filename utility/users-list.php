@@ -81,10 +81,17 @@ class UsersList
             if($email == $update) {
                 setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
                 header('Location: ' . URL);
+            } else {
+                self::$errorMessage = ErrorMessages::$deleteUserError;
             }
         } else {
-            setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
-            header('Location: ' . URL);
+            // Admins only allowed to Update Users and not other Admins
+            if(!self::checkIfUserIsAnAdmin($update)) {
+                setcookie(UPDATE, $email, time() + 24 * 60 * 60, "/", "", 0);
+                header('Location: ' . URL);
+            } else {
+                self::$errorMessage = ErrorMessages::$deleteUserError;
+            }
         }
 
     }

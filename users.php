@@ -69,7 +69,7 @@ if(isset($_GET['update'])) {
                     ?>
                 </ul>
         <?php   }
-        if(isset($_GET["email"])) {
+        if(isset($_GET["email"]) || isset($_GET["update"])) {
             if(UsersList::$errorMessage != "") {
                 echo "<div class='error-message'><span>" . UsersList::$errorMessage . "</span></div>";
             }
